@@ -23,5 +23,5 @@ jobs:
           sudo apt update
           sudo apt install doxygen graphviz ttf-freefont perl build-base texlive-full biblatex ghostscript
 
-      - 
+  
 
