@@ -1,4 +1,4 @@
-name: HeliOS CI Workflow
+name: Generate Docs Test
 
 on:
 
@@ -10,17 +10,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-test: 
+  generate-docs: 
     runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout HeliOS...
         uses: actions/checkout@v3
 
-      - name: Build HeliOS unit tests...
+      - name: Install doxygen...
         shell: bash
-        run: gcc -fdiagnostics-color=always -O0 -ggdb -std=c89 -Wall -Wextra -Wno-unused-parameter -I${{github.workspace}}/src -I${{github.workspace}}/extras/test/src/harness -I${{github.workspace}}/extras/test/src/unit -DPOSIX_ARCH_OTHER -DCONFIG_MEMORY_REGION_SIZE_IN_BLOCKS=0x1C20u -DCONFIG_ENABLE_SYSTEM_ASSERT -o${{github.workspace}}/extras/test/bin/test ${{github.workspace}}/src/*.c ${{github.workspace}}/extras/test/src/*.c ${{github.workspace}}/extras/test/src/harness/*.c ${{github.workspace}}/extras/test/src/unit/*.c
+        run: |
+          sudo apt update
+          sudo apt install doxygen graphviz ttf-freefont perl build-base texlive-full biblatex ghostscript
 
-      - name: Run HeliOS unit tests...
-        shell: bash
-        run: ${{github.workspace}}/extras/test/bin/test
+      - 
+
