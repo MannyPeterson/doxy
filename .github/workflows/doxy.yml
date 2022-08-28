@@ -48,7 +48,8 @@ jobs:
           sed -i '/*./d' ${{github.workspace}}/temp/HeliOS.conf
           sed -i 's~^FILE_PATTERNS .*~FILE_PATTERNS = *.h~' ${{github.workspace}}/temp/HeliOS.conf
           sed -i 's~^RECURSIVE .*~RECURSIVE = NO~' ${{github.workspace}}/temp/HeliOS.conf
-          sed -i 's~^CLASS_DIAGRAMS a.*~CLASS_DIAGRAMS = NO~' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's~^CLASS_DIAGRAMS .*~CLASS_DIAGRAMS = NO~' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's~^HAVE_DOT .*~HAVE_DOT = NO~' ${{github.workspace}}/temp/HeliOS.conf
           cat ${{github.workspace}}/temp/HeliOS.conf
 
       - name: Run doxygen...
