@@ -70,6 +70,7 @@ jobs:
         run: |
           doxygen ${{github.workspace}}/temp/HeliOS.conf
           cat ${{github.workspace}}/temp/doxygen.log
+          tar -zcvf latex.tar.gz ${{github.workspace}}/temp/latex
 
       - name: Generate PDF from LaTeX...
         shell: bash
@@ -87,5 +88,6 @@ jobs:
           git config --global user.name 'Manny Peterson'
           git config --global user.email '12462046+MannyPeterson@users.noreply.github.com'
           git add ${{github.workspace}}/doc/HeliOS_Developers_Guide.pdf
+          git add ${{github.workspace}}/latex.tar.gz
           git commit -m "workflow push"
           git push
