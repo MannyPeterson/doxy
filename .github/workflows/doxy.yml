@@ -50,3 +50,7 @@ jobs:
           sed -i 's~^RECURSIVE .*~RECURSIVE = NO~' ${{github.workspace}}/temp/HeliOS.conf
           sed -i 's~^CLASS_DIAGRAMS a.*~CLASS_DIAGRAMS = NO~' ${{github.workspace}}/temp/HeliOS.conf
           cat ${{github.workspace}}/temp/HeliOS.conf
+
+      - name: Run doxygen...
+        shell: bash
+        run: doxygen ${{github.workspace}}/temp/HeliOS.conf
