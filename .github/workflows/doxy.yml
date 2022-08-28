@@ -56,6 +56,10 @@ jobs:
         shell: bash
         run: doxygen ${{github.workspace}}/temp/HeliOS.conf
 
+      - name: List results...
+        shell: bash
+        run: ls -l
+
 
       - name: Make docs...
         shell: bash
