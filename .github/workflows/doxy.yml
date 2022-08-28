@@ -54,14 +54,17 @@ jobs:
 
       - name: Run doxygen...
         shell: bash
-        run: doxygen ${{github.workspace}}/temp/HeliOS.conf
+        run: |
+          doxygen ${{github.workspace}}/temp/HeliOS.conf
 
       - name: Make docs...
         shell: bash
         run: |
           cd ${{github.workspace}}/temp/latex
           make
+          cd ${{github.workspace}}
 
       - name: List results...
         shell: bash
-        run: ls -l
+        run: |
+          ls -l  ${{github.workspace}}/temp/latex
