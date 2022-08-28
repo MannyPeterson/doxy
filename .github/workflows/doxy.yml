@@ -17,13 +17,13 @@ jobs:
       - name: Checkout HeliOS...
         uses: actions/checkout@v3
 
-      - name: Install doxygen...
+      - name: Install Doxygen and LaTeX...
         shell: bash
         run: |
           sudo apt update
           sudo apt -y install doxygen-latex
 
-      - name: Configure doxygen...
+      - name: Create configuration...
         shell: bash
         run: |
           mkdir ${{github.workspace}}/temp          
@@ -60,18 +60,19 @@ jobs:
           sed -i 's~^VERBATIM_HEADERS .*~VERBATIM_HEADERS = NO~' ${{github.workspace}}/temp/HeliOS.conf
           cat ${{github.workspace}}/temp/HeliOS.conf
 
-      - name: Resize logo...
+      - name: Resize HeliOS logo...
         shell: bash
         run: |
           convert -resize 100x55! ${{github.workspace}}/extras/HeliOS_OG_Logo.png ${{github.workspace}}/extras/HeliOS_OG_Logo.png
 
-      - name: Run doxygen...
+      - name: Generate LaTeX...
         shell: bash
         run: |
           doxygen ${{github.workspace}}/temp/HeliOS.conf
           cat ${{github.workspace}}/temp/doxygen.log
+          ls -l ${{github.workspace}}/temp/latex
 
-      - name: Make docs...
+      - name: Generate PDF from LaTeX...
         shell: bash
         run: |
           cd ${{github.workspace}}/temp/latex
@@ -79,7 +80,7 @@ jobs:
           make
           cd ${{github.workspace}}
 
-      - name: Push PDF...
+      - name: Push PDF to repository...
         shell: bash
         run: |
           cp ${{github.workspace}}/temp/latex/refman.pdf ${{github.workspace}}/doc/HeliOS_Developers_Guide.pdf
