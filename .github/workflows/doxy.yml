@@ -58,7 +58,7 @@ jobs:
 
       - name: List results...
         shell: bash
-        run: ls -l
+        run: ls -l ${{github.workspace}}/temp
 
 
       - name: Make docs...
