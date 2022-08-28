@@ -77,7 +77,6 @@ jobs:
         run: |
           cd ${{github.workspace}}/temp/latex
           ls -l
-          grep logo *
           make
           cd ${{github.workspace}}
 
