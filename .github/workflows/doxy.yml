@@ -43,13 +43,21 @@ jobs:
           sed -i 's~^GENERATE_XML .*~GENERATE_XML = NO~' ${{github.workspace}}/temp/HeliOS.conf
           sed -i 's~^REPEAT_BRIEF .*~REPEAT_BRIEF = NO~' ${{github.workspace}}/temp/HeliOS.conf
           sed -i 's~^FULL_PATH_NAMES .*~FULL_PATH_NAMES = NO~' ${{github.workspace}}/temp/HeliOS.conf
-          sed -i 's~^INPUT .*~INPUT = ${{github.workspace}}/src~' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's~^INPUT .*~INPUT = ${{github.workspace}}/src/config.h ${{github.workspace}}/src/HeliOS.h~' ${{github.workspace}}/temp/HeliOS.conf
           sed -i 's~^FILE_PATTERNS .*~FILE_PATTERNS = XXX~' ${{github.workspace}}/temp/HeliOS.conf
           sed -i '/*./d' ${{github.workspace}}/temp/HeliOS.conf
           sed -i 's~^FILE_PATTERNS .*~FILE_PATTERNS = *.h~' ${{github.workspace}}/temp/HeliOS.conf
           sed -i 's~^RECURSIVE .*~RECURSIVE = NO~' ${{github.workspace}}/temp/HeliOS.conf
           sed -i 's~^CLASS_DIAGRAMS .*~CLASS_DIAGRAMS = NO~' ${{github.workspace}}/temp/HeliOS.conf
           sed -i 's~^HAVE_DOT .*~HAVE_DOT = NO~' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's~^PROJECT_BRIEF .*~PROJECT_BRIEF = HeliOS Embedded Operating System~' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's~^SHOW_HEADERFILE .*~SHOW_HEADERFILE = NO~' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's~^SHOW_INCLUDE_FILES .*~SHOW_INCLUDE_FILES = NO~' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's~^QUIET .*~QUIET = YES~' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's~^WARNINGS .*~WARNINGS = YES~' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's~^WARN_LOGFILE .*~WARN_LOGFILE = ${{github.workspace}}/temp/doxygen.log~' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's~^INLINE_SOURCES .*~INLINE_SOURCES = NO~' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's~^VERBATIM_HEADERS .*~VERBATIM_HEADERS = NO~' ${{github.workspace}}/temp/HeliOS.conf
           cat ${{github.workspace}}/temp/HeliOS.conf
 
       - name: Resize logo...
@@ -61,6 +69,7 @@ jobs:
         shell: bash
         run: |
           doxygen ${{github.workspace}}/temp/HeliOS.conf
+          cat ${{github.workspace}}/temp/doxygen.log
 
       - name: Make docs...
         shell: bash
