@@ -70,7 +70,7 @@ jobs:
         run: |
           doxygen ${{github.workspace}}/temp/HeliOS.conf
           cat ${{github.workspace}}/temp/doxygen.log
-          ls -l ${{github.workspace}}/temp/latex
+          grep logo ${{github.workspace}}/temp/latex/*
 
       - name: Generate PDF from LaTeX...
         shell: bash
