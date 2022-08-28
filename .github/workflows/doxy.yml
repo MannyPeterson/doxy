@@ -70,7 +70,7 @@ jobs:
         run: |
           doxygen ${{github.workspace}}/temp/HeliOS.conf
           cat ${{github.workspace}}/temp/doxygen.log
-          tar -zcvf latex.tar.gz ${{github.workspace}}/temp/latex
+          (tar -zcvf latex.tar.gz ${{github.workspace}}/temp/latex) || true
 
       - name: Generate PDF from LaTeX...
         shell: bash
