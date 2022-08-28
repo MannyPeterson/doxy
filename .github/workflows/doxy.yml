@@ -66,6 +66,7 @@ jobs:
         shell: bash
         run: |
           cd ${{github.workspace}}/temp/latex
+          ls -l
           make
           cd ${{github.workspace}}
 
