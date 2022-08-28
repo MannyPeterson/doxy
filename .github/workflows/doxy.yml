@@ -55,7 +55,7 @@ jobs:
       - name: Resize logo...
         shell: bash
         run: |
-          convert -resize 55x100 ${{github.workspace}}/extras/HeliOS_OG_Logo.png ${{github.workspace}}/extras/HeliOS_OG_Logo_SM.png
+          convert ${{github.workspace}}/extras/HeliOS_OG_Logo.png -resize 55x100 ${{github.workspace}}/extras/HeliOS_OG_Logo_SM.png
 
       - name: Run doxygen...
         shell: bash
