@@ -24,7 +24,7 @@ jobs:
   generate-doc: 
     runs-on: ubuntu-22.04
 
-    if: jobs.failresult == success
+    if: job.fail.result == success
 
     steps:
       - name: Checkout HeliOS...
