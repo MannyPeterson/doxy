@@ -52,6 +52,11 @@ jobs:
           sed -i 's~^HAVE_DOT .*~HAVE_DOT = NO~' ${{github.workspace}}/temp/HeliOS.conf
           cat ${{github.workspace}}/temp/HeliOS.conf
 
+      - name: Resize logo...
+        shell: bash
+        run: |
+          convert -reside 55x100 ${{github.workspace}}/extras/HeliOS_OG_Logo.png ${{github.workspace}}/extras/HeliOS_OG_Logo.png
+
       - name: Run doxygen...
         shell: bash
         run: |
