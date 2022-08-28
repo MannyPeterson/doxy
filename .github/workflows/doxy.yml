@@ -23,5 +23,28 @@ jobs:
           sudo apt update
           sudo apt -y install doxygen-latex
 
-  
-
+      - name: Configure doxygen...
+        shell: bash
+        run: |
+          mkdir ${{github.workspace}}/temp          
+          doxygen -g ${{github.workspace}}/temp/HeliOS.conf
+          sed -i '/^$/d' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i '/^#.*/d' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's/^PROJECT_NAME.*/PROJECT_NAME = HeliOS/' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's/^PROJECT_NUMBER.*/PROJECT_NUMBER = 0.3.5/' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's/^PROJECT_LOGO.*/PROJECT_LOGO = ${{github.workspace}}\/extras\/HeliOS_OG_Logo.png/' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's/^OUTPUT_DIRECTORY.*/OUTPUT_DIRECTORY = ${{github.workspace}}\/temp/' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's/^OPTIMIZE_OUTPUT_FOR_C.*/OPTIMIZE_OUTPUT_FOR_C = YES/' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's/^GENERATE_HTML.*/GENERATE_HTML = NO/' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's/^GENERATE_LATEX.*/GENERATE_LATEX = YES/' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's/^COMPACT_LATEX.*/COMPACT_LATEX = YES/' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's/^GENERATE_RTF.*/GENERATE_RTF = NO/' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's/^GENERATE_MAN.*/GENERATE_MAN = NO/' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's/^GENERATE_XML.*/GENERATE_XML = NO/' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's/^REPEAT_BRIEF.*/REPEAT_BRIEF = NO/' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's/^FULL_PATH_NAMES.*/FULL_PATH_NAMES = NO/' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's/^INPUT.*/INPUT = ${{github.workspace}}\/src/' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's/^FILE_PATTERNS.*/FILE_PATTERNS = *.h/' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's/^RECURSIVE.*/RECURSIVE = NO/' ${{github.workspace}}/temp/HeliOS.conf
+          sed -i 's/^CLASS_DIAGRAMS.*/CLASS_DIAGRAMS = NO/' ${{github.workspace}}/temp/HeliOS.conf
+          cat ${{github.workspace}}/temp/HeliOS.conf
