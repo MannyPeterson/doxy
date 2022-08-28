@@ -13,6 +13,7 @@ jobs:
   fail:
     runs-on: ubuntu-22.04
 
+    id: failjob
 
     steps:
       - name: Checkout HeliOS...
@@ -24,6 +25,8 @@ jobs:
 
   generate-doc: 
     runs-on: ubuntu-22.04
+
+    if: jobs.failjob.result == success
 
     steps:
       - name: Checkout HeliOS...
