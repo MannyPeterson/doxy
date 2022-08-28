@@ -60,6 +60,11 @@ jobs:
           sed -i 's~^VERBATIM_HEADERS .*~VERBATIM_HEADERS = NO~' ${{github.workspace}}/temp/HeliOS.conf
           cat ${{github.workspace}}/temp/HeliOS.conf
 
+      - name: Resize HeliOS logo...
+        shell: bash
+        run: |
+          convert -resize 250 ${{github.workspace}}/extras/HeliOS_OG_Logo.png ${{github.workspace}}/extras/HeliOS_OG_Logo.png
+
       - name: Generate LaTeX...
         shell: bash
         run: |
