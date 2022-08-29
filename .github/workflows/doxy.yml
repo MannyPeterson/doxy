@@ -10,21 +10,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  fail:
-    runs-on: ubuntu-22.04
-
-    steps:
-      - name: Checkout HeliOS...
-        uses: actions/checkout@v3
-
-      - name: fail...
-        shell: bash
-        run: cookoo
-
   generate-doc: 
     runs-on: ubuntu-22.04
-
-    if: jobs.fail.result == success
 
     steps:
       - name: Checkout HeliOS...
