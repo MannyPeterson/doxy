@@ -26,7 +26,7 @@ jobs:
       - name: Run cppcheck
         shell: bash
         run: |
-          cppcheck --quiet --language=c --platform=unix64 --max-ctu-depth=8 --cppcheck-build-dir=${{github.workspace}}/build --template="::warning file={file},line={line},col={column}::{message}" --enable=all --std=c89 -DPOSIX_ARCH_OTHER ${{github.workspace}}/src/       
+          cppcheck --quiet --language=c --platform=unix64 --max-ctu-depth=8 --cppcheck-build-dir=${{github.workspace}}/build --template="::{severity} file={file},line={line},col={column}::{message}" --enable=all --std=c89 -DPOSIX_ARCH_OTHER ${{github.workspace}}/src/
 
       - name: Not sure
         shell: bash
